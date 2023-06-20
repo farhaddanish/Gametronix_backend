@@ -45,8 +45,7 @@ class Accounts (AbstractBaseUser):
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
     live_strem = models.IntegerField(blank=True, null=True)
-    profile_photo = models.ImageField (upload_to="accounts/profile", blank=True)
-    
+    profile_photo = models.ImageField(upload_to="accounts/profile", blank=True)
 
     # required
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -56,12 +55,8 @@ class Accounts (AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     is_superadmin = models.BooleanField(default=False)
 
-
     REQUIRED_FIELDS = ["first_name", "last_name"]
     objects = AccountsManager()
-
-
-
 
     def __str__(self):
         return self.email
@@ -71,3 +66,9 @@ class Accounts (AbstractBaseUser):
 
     def has_module_perms(self, add_label):
         return True
+    
+
+
+
+    class Meta:
+        verbose_name_plural = "Accounts"
