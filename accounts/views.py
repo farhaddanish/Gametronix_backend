@@ -7,10 +7,11 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
+from django.utils.encoding import force_bytes, force_str
 from .token import token
 from django.utils.html import strip_tags
 import threading
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
 # Create your views here.
 
@@ -57,13 +58,12 @@ def register(request):
                                  "Please verify your Email")
             return redirect('user_login')
 
-        else:
-            forms = AccountForms()
-
     else:
-        return render(request, "accounts/register.html", {
-            "forms": forms
-        })
+        forms = AccountForms()
+    
+    return render(request, "accounts/register.html", {
+        "forms": forms
+    })
 
 
 def user_login(request):
@@ -93,3 +93,23 @@ def user_logout(request):
         messages.add_message(request, messages.INFO,
                              "Logout successfull")
         return redirect("main")
+
+
+def activateUser(request, uid, token):
+    if request.method == "GET":
+
+        decodeUID = force_str(urlsafe_base64_decode(uid))
+
+        user = Accounts.objects.get(pk=decodeUID)
+
+        if user is not None and default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            messages.add_message(request, messages.INFO,
+                                 'accounts activated succsefully')
+            return redirect('login')
+        else:
+
+            messages.add_message(request, messages.INFO,
+                                 'try again ')
+            return redirect('register')

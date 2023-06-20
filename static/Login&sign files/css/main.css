@@ -490,4 +490,38 @@ iframe {
 }
 
 
+.errorlist {
+  color: red;
+  font-size: 11px;
+  position: relative;
+  top: -30px;
+  padding-left: 5px;
+}
+
+
+.span-email::before {
+  width: 100%;
+  background: red;
+}
+
+
+.span-password1::before {
+  background: red;
+  width: 100%;
+}
+
+.span-password2::before {
+  background: red;
+  width: 100%;
+}
+
+
+.has_val_forEmail::after{
+  top: -15px;
+}
+
+
+
+/* code base otp */
+
 

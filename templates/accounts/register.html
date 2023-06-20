@@ -1,16 +1,113 @@
-{% load static %}
 {% extends 'base.html' %}
+{% load static %}
 
 
 
-{% block stylesheet %}Gametronix Registreations{% endblock stylesheet %}
+{% block stylesheet %}
+    <title>
+        Gametronix Registreations
+    </title>
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'Login&sign files/css/util.css' %}"
+        />
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'Login&sign files/css/main.css' %}"
+        />
+{% endblock stylesheet %}
 {% block content %}
 
 
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <span class="login100-form-title p-b-26">
+                    Register
+                </span>
 
+
+                <div class="wrap-input100" data-validate="First Name">
+                    {{forms.first_name}}
+                    <span class="focus-input100 {% if form.email.errors %}has_val_forEmail{% endif %}
+						{% if form.password2.errors %}has_val_forEmail{% endif %}" data-placeholder="First Name"></span>
+                </div>
+
+                <div
+                 
+                    class="wrap-input100 validate-input"
+                    data-validate = "Valid email is: a@b.c"
+                >
+                    {{forms.email}}
+                    <span class="focus-input100  {% if form.email.errors %}span-email  has_val_forEmail{% endif %}
+						{% if form.password2.errors %}has_val_forEmail{% endif %}" data-placeholder="Email"></span> 
+                </div>
+                {{forms.email.errors}}
+
+                <div
+                class="wrap-input100 validate-input" data-validate="Enter password"
+                   
+                >
+                    <span class="btn-show-pass {% if forms.password1.errors %}span-password1{% endif %}">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                    {{forms.password1}}
+                    <span
+                        class="focus-input100"
+                        data-placeholder="Password"
+                    ></span>
+                </div>
+                {{forms.password1.errors}}
+
+                
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                   
+                
+                    <span class="btn-show-pass {% if forms.password2.errors %}span-password2{% endif %}">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                    {{forms.password2}}
+                    <span
+                        class="focus-input100"
+                        data-placeholder="Confirm your Password"
+                    ></span>
+                </div>
+                {{forms.password2.errors}}
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" type='submit' >
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center p-t-90">
+                    <span class="txt1"> have an account? </span>
+
+                    <a class="txt2" href="{% url 'user_login' %}"> Login </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="dropDownSelect1"></div>
 
 
 
 {% endblock content %}
+
+
+
+{% block javascript %}
+    <script src="{% static 'Login&sign files/js/main.js' %}"></script>
+{% endblock javascript %}
 
 
