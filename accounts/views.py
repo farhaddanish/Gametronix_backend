@@ -54,7 +54,7 @@ def register(request):
             )
             html_email.attach_alternative(html_templates, "text/html")
             EmailThread(html_email).start()
-            messages.add_message(request, messages.INFO,
+            messages.add_message(request, messages.SUCCESS,
                                  "Please verify your Email")
             return redirect('user_login')
 
@@ -108,11 +108,11 @@ def activateUser(request, uid, token):
         if user is not None and default_token_generator.check_token(user, token):
             user.is_active = True
             user.save()
-            messages.add_message(request, messages.INFO,
+            messages.add_message(request, messages.SUCCESS,
                                  'accounts activated succsefully')
-            return redirect('login')
+            return redirect('user_login')
         else:
 
-            messages.add_message(request, messages.INFO,
+            messages.add_message(request, messages.ERROR,
                                  'try again ')
             return redirect('register')
