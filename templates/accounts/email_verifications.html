@@ -25,23 +25,7 @@
                             format("woff");
                 }
 
-                @font-face {
-                    font-family: "Lato";
-                    font-style: italic;
-                    font-weight: 400;
-                    src: local("Lato Italic"), local("Lato-Italic"),
-                        url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff)
-                            format("woff");
-                }
-
-                @font-face {
-                    font-family: "Lato";
-                    font-style: italic;
-                    font-weight: 700;
-                    src: local("Lato Bold Italic"), local("Lato-BoldItalic"),
-                        url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff)
-                            format("woff");
-                }
+                
             }
 
             /* CLIENT-SPECIFIC STYLES */
@@ -81,7 +65,7 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 width: 100% !important;
-                background-color: #f4f4f4;
+                background-color: #DB4FA8;
             }
 
             /* iOS BLUE LINKS */
@@ -148,7 +132,7 @@
             </tr>
             <tr>
                 <td
-                    bgcolor="#FFA73B"
+                    bgcolor="#e75e8d"
                     align="center"
                     style="padding: 0px 10px 0px 10px"
                 >
@@ -185,12 +169,7 @@
                                 >
                                     Welcome!
                                 </h1>
-                                <img
-                                    src=" https://img.icons8.com/clouds/100/000000/handshake.png"
-                                    width="125"
-                                    height="120"
-                                    style="display: block; border: 0px"
-                                />
+                                
                             </td>
                         </tr>
                     </table>
@@ -255,10 +234,10 @@
                                                         style="
                                                             border-radius: 3px;
                                                         "
-                                                        bgcolor="#FFA73B"
+                                                        bgcolor="#DB4FA8"
                                                     >
                                                         <a
-                                                            href="http://{{domain}}{% url 'activate' uid=uid token=token %}"
+                                                            href="http://{{domain}}/{% url 'activate' uid=uid token=token %}"
                                                             target="_blank"
                                                             style="
                                                                 font-size: 20px;
@@ -325,10 +304,10 @@
                             >
                                 <p style="margin: 0">
                                     <a
-                                        href="http://{{domain}}{% url 'activate' uid=uid token=token %}"
+                                        href="http://{{domain}}/{% url 'activate' uid=uid token=token %}"
                                         target="_blank"
-                                        style="color: #ffa73b"
-                                        >http://{{domain}}{{uid}} {{token}} 
+                                        style="color: #DB4FA8"
+                                        >http://{{domain}}/{{uid}} {{token}} 
                                 </a>
                                 </p>
                             </td>
@@ -378,7 +357,7 @@
             </tr>
             <tr>
                 <td
-                    bgcolor="#f4f4f4"
+                    bgcolor="#e75e8d"
                     align="center"
                     style="padding: 30px 10px 0px 10px"
                 >
@@ -418,7 +397,7 @@
                                     <a
                                         href="#"
                                         target="_blank"
-                                        style="color: #ffa73b"
+                                        style="color: #DB4FA8"
                                         >We&rsquo;re here to help you out</a
                                     >
                                 </p>

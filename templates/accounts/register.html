@@ -34,8 +34,8 @@
 
                 <div class="wrap-input100" data-validate="First Name">
                     {{forms.first_name}}
-                    <span class="focus-input100 {% if form.email.errors %}has_val_forEmail{% endif %}
-						{% if form.password2.errors %}has_val_forEmail{% endif %}" data-placeholder="First Name"></span>
+                    <span class="focus-input100 {% if forms.email.errors %}has_val_forEmail{% endif %}
+						{% if forms.password2.errors %}has_val_forEmail{% endif %}" data-placeholder="First Name"></span>
                 </div>
 
                 <div
@@ -44,8 +44,8 @@
                     data-validate = "Valid email is: a@b.c"
                 >
                     {{forms.email}}
-                    <span class="focus-input100  {% if form.email.errors %}span-email  has_val_forEmail{% endif %}
-						{% if form.password2.errors %}has_val_forEmail{% endif %}" data-placeholder="Email"></span> 
+                    <span class="focus-input100  {% if forms.email.errors %}span-email  has_val_forEmail{% endif %}
+						{% if forms.password2.errors %}has_val_forEmail{% endif %}" data-placeholder="Email"></span> 
                 </div>
                 {{forms.email.errors}}
 
@@ -99,9 +99,6 @@
 </div>
 
 <div id="dropDownSelect1"></div>
-
-
-
 {% endblock content %}
 
 

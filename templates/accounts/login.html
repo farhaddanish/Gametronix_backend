@@ -25,14 +25,26 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" method="POST" action="{% url 'user_login' %}">
+                {% csrf_token %}
                 <span class="login100-form-title p-b-26"> Login </span>
+
+
+                {% for message in messages %}
+                    <div class="alert {{message.tags}} alert-dismissible shadow fade show" role="alert">
+                        {{ message | safe }}
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="pl-5" id="alerto">
+                            <span aria-hidden="true" class="pl-5">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
 
                 <div
                     class="wrap-input100 validate-input"
                     data-validate="Valid email is: a@b.c"
                 >
-                    <input class="input100" type="text" name="email" />
+                    <input class="input100" type="email" name="email" />
                     <span
                         class="focus-input100"
                         data-placeholder="Email"
@@ -49,13 +61,19 @@
                     <input
                         class="input100"
                         type="password"
-                        name="pass"
+                        name="password"
                     />
                     <span
                         class="focus-input100"
                         data-placeholder="Password"
                     ></span>
                 </div>
+
+                {% if valid %}
+                    <ul class="errorlist">
+                        <li> The Password or Email is incorrect </li>
+                    </ul>
+                {% endif %}
 
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
@@ -88,8 +106,6 @@
 </div>
 
 <div id="dropDownSelect1"></div>
-
-
 
 {% endblock content %}
 

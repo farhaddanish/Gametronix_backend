@@ -85,4 +85,10 @@ $(document).ready(function () {
     });
 
 
+
+
+    $( "#alerto" ).click(function() {
+        $( ".alert" ).alert('close');
+      });
+
 });

@@ -60,7 +60,7 @@ def register(request):
 
     else:
         forms = AccountForms()
-    
+
     return render(request, "accounts/register.html", {
         "forms": forms
     })
@@ -69,18 +69,21 @@ def register(request):
 def user_login(request):
     if request.method == 'POST':
         email = request.POST["email"]
-        password = request.POST["password"]
+        password = request.POST.get("password")
+
+        print(password)
+        print(email)
 
         auth = authenticate(request, email=email, password=password)
         if auth is not None:
-            login(request)
+            login(request, auth)
             messages.add_message(request, messages.INFO,
                                  "Login Succesfull")
             return redirect("main")
 
         else:
-            messages.add_message(request, messages.INFO,
-                                 "Email or Password is incorect")
+            messages.add_message(request, messages.ERROR,
+                                 "Email or password is incorect")
             return redirect("user_login")
 
     else:
