@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 import uuid
+from accounts.models import Accounts
+from django.urls import reverse
 # Create your models here.
 
 
@@ -47,6 +49,14 @@ def validate_sample_video(value):
     ext = value.name.split('.')[-1].upper()
     if not ext.upper() in video_formats:
         raise ValidationError(' Only support Video Files')
+    
+
+
+class Genre(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class Games (models.Model):
@@ -63,7 +73,9 @@ class Games (models.Model):
         max_digits=10, blank=True, null=True, decimal_places=2)
     date_added = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
+    version = models.IntegerField(blank= False)
     slug = models.SlugField(blank=False)
+    genre = models.ForeignKey(Genre, models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -73,5 +85,29 @@ class Games (models.Model):
             self.size = self.file.size / (1000*1000*1000)
         super().save(*args, **kwargs)
 
+
+    def get_absolute_url(self):
+        return reverse("game_details", kwargs={"pk": self.uuid})
+    
+
     class Meta:
         verbose_name_plural = "Games"
+
+
+
+
+class Downloaded (models.Model):
+    user = models.ForeignKey(Accounts, models.CASCADE)
+    game = models.ForeignKey(Games, models.CASCADE)
+    Download_date = models.DateTimeField(auto_created=True)
+
+
+
+    def downloadCount ():
+        return self.game.count()
+
+
+    def __str__ (self):
+        return f"{self.game.name} - {self.user.first_name}"
+    
+
